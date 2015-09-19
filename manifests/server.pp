@@ -75,16 +75,6 @@ class torque::server(
     ensure => $server_ensure,
   }
 
-  file { "${torque_home}/server_priv/nodes":
-    ensure  => present,
-    content => template("${module_name}/nodes.erb"),
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
-    notify  => Service[$service_name],
-    require => Package[$package],
-  }
-
   file { '/etc/default/torque-server':
     ensure  => present,
     content => template("${module_name}/server_default.erb"),
@@ -107,7 +97,8 @@ class torque::server(
     ensure     => $service_ensure,
     enable     => $service_enable,
     hasrestart => true,
-    hasstatus  => true,
+    hasstatus  => false,
+    status     => "start-stop-daemon  -T -n pbs_server",
     require    => [ Package[$package],
                     Class['torque::server::config']],
     subscribe  => [ File["${torque_home}/server_name"]],

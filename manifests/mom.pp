@@ -73,7 +73,8 @@ class torque::mom(
     ensure     => $mom_service_ensure,
     enable     => $mom_service_enable,
     hasrestart => true,
-    hasstatus  => true,
+    hasstatus  => false,
+    status     => "start-stop-daemon  -T -n pbs_mom",
     require    => [Package['torque-mom']],
     subscribe  => File["${torque_home}/mom_priv/config"],
   }

@@ -43,4 +43,15 @@ class torque::client(
     mode    => '0600',
   }
 
+  @@concat::fragment{ "torque_client_${fhost}":
+      target  => "${torque_home}/server_priv/nodes",
+      content => template("${module_name}/client.erb"),
+      tag     => 'torque',
+  }
+  # export our dns name
+  @@host { $::fqdn:
+      ip           => $::ipaddress_eth0,
+      host_aliases => [ $::hostname ],
+      tag          => [ 'torque_hosts' ],
+  }
 }
