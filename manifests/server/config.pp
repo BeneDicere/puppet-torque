@@ -10,7 +10,7 @@ class torque::server::config (
   $export_tag = 'torque'
 ) {
 
-  include concat::setup
+  #include concat::setup
 
   Concat::Fragment <<| tag == $export_tag |>>
 
