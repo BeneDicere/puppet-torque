@@ -1,5 +1,5 @@
 #puppet-torque
-[![Build Status](https://travis-ci.org/benedicere/puppet-torque.png?branch=master)](https://travis-ci.org/benedicere/puppet-torque)
+[![Build Status](https://travis-ci.org/BeneDicere/puppet-torque.png?branch=master)](https://travis-ci.org/BeneDicere/puppet-torque)
 
 This is a Puppet module for managing Torque resource manager and Maui scheduler.
 
